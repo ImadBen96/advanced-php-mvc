@@ -12,3 +12,7 @@ $app = Application::getInstance($file);
 
 
 
+print_r($app->run());
+
+
+
