@@ -4,21 +4,21 @@ namespace System;
 
 class File
 {
-    /**
+     /**
      * Directory Separator
      *
      * @const string
      */
     const DS = DIRECTORY_SEPARATOR;
 
-    /**
+     /**
      * Root Path
      *
      * @var string
      */
     private $root;
 
-    /**
+     /**
      * Constructor
      *
      * @param string $root
@@ -28,7 +28,7 @@ class File
         $this->root = $root;
     }
 
-    /**
+     /**
      * Determine wether the given file path exists
      *
      * @param string $file
@@ -39,7 +39,7 @@ class File
         return file_exists($this->to($file));
     }
 
-    /**
+     /**
      * Require The given file
      *
      * @param string $file
@@ -50,7 +50,7 @@ class File
         return require $this->to($file);
     }
 
-    /**
+     /**
      * Generate full path to the given path in vendor folder
      *
      * @param string $path
@@ -61,7 +61,7 @@ class File
         return $this->to('vendor/' . $path);
     }
 
-    /**
+     /**
      * Generate full path to the given path in public folder
      *
      * @param string $path
@@ -72,14 +72,14 @@ class File
         return $this->to('public/' . $path);
     }
 
-    /**
-     * Generate full path to the given path
-     *
-     * @param string $path
-     * @return string
-     */
-    public function to($path)
-    {
-        return $this->root . static::DS . str_replace(['/', '\\'], static::DS, $path);
-    }
+   /**
+   * Generate full path to the given path
+   *
+   * @param string $path
+   * @return string
+   */
+  public function to($path)
+  {
+      return $this->root . static::DS . str_replace(['/', '\\'], static::DS, $path);
+  }
 }

@@ -4,7 +4,7 @@ namespace System;
 
 abstract class Controller
 {
-    /**
+     /**
      * Application Object
      *
      * @var \System\Application
@@ -12,13 +12,13 @@ abstract class Controller
     protected $app;
 
     /**
-     * Errors container
-     *
-     * @var array
-     */
+    * Errors container
+    *
+    * @var array
+    */
     protected $errors = [];
 
-    /**
+     /**
      * Constructor
      *
      * @param \System\Application $app
@@ -29,17 +29,17 @@ abstract class Controller
     }
 
     /**
-     * Encode the given value to json
-     *
-     * @param mixed $data
-     * @return string
-     */
+    * Encode the given value to json
+    *
+    * @param mixed $data
+    * @return string
+    */
     public function json($data)
     {
         return json_encode($data);
     }
 
-    /**
+     /**
      * Call shared application objects dynamically
      *
      * @param string $key

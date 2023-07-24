@@ -4,28 +4,28 @@ namespace System;
 
 class Loader
 {
-    /**
+     /**
      * Application Object
      *
      * @var \System\Application
      */
     private $app;
 
-    /**
+     /**
      * Controllers Container
      *
      * @var array
      */
     private $controllers = [];
 
-    /**
+     /**
      * Models Container
      *
      * @var array
      */
     private $models = [];
 
-    /**
+     /**
      * Constructor
      *
      * @param \System\Application $app
@@ -35,7 +35,7 @@ class Loader
         $this->app = $app;
     }
 
-    /**
+     /**
      * Call the given controller with the given method
      * and pass the given arguments to the controller method
      *
@@ -51,7 +51,7 @@ class Loader
         return call_user_func_array([$object, $method], $arguments);
     }
 
-    /**
+     /**
      * Call the given controller
      *
      * @param string $controller
@@ -68,7 +68,7 @@ class Loader
         return $this->getController($controller);
     }
 
-    /**
+     /**
      * Determine if the given class|controller exists
      * in the controllers container
      *
@@ -80,7 +80,7 @@ class Loader
         return array_key_exists($controller, $this->controllers);
     }
 
-    /**
+     /**
      * Create new object for the given controller and store it
      * in controllers container
      *
@@ -95,7 +95,7 @@ class Loader
         $this->controllers[$controller] = $object;
     }
 
-    /**
+     /**
      * Get the controller object
      *
      * @param string $controller
@@ -106,7 +106,7 @@ class Loader
         return $this->controllers[$controller];
     }
 
-    /**
+     /**
      * Get the full class name for the given controller
      *
      * @param string $controller
@@ -121,7 +121,7 @@ class Loader
         return str_replace('/', '\\', $controller);
     }
 
-    /**
+     /**
      * Call the given model
      *
      * @param string $model
@@ -138,7 +138,7 @@ class Loader
         return $this->getModel($model);
     }
 
-    /**
+     /**
      * Determine if the given class|model exists
      * in the models container
      *
@@ -150,7 +150,7 @@ class Loader
         return array_key_exists($model, $this->models);
     }
 
-    /**
+     /**
      * Create new object for the given model and store it
      * in models container
      *
@@ -165,7 +165,7 @@ class Loader
         $this->models[$model] = $object;
     }
 
-    /**
+     /**
      * Get the model object
      *
      * @param string $model
@@ -176,7 +176,7 @@ class Loader
         return $this->models[$model];
     }
 
-    /**
+     /**
      * Get the full class name for the given model
      *
      * @param string $model

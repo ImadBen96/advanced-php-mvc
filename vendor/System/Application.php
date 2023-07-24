@@ -6,21 +6,21 @@ use Closure;
 
 class Application
 {
-    /**
+     /**
      * Container
      *
      * @var array
      */
     private $container = [];
 
-    /**
+     /**
      * Application Object
      *
      * @var \System\Application
      */
     private static $instance;
 
-    /**
+     /**
      * Constructor
      *
      * @param \System\File $file
@@ -34,7 +34,7 @@ class Application
         $this->loadHelpers();
     }
 
-    /**
+     /**
      * Get Application Instance
      *
      * @param \System\File $file
@@ -49,7 +49,7 @@ class Application
         return static::$instance;
     }
 
-    /**
+     /**
      * Run The Application
      *
      * @return void
@@ -75,7 +75,7 @@ class Application
         $this->response->send();
     }
 
-    /**
+     /**
      * Register classes in spl auto load register
      *
      * @return void
@@ -85,7 +85,7 @@ class Application
         spl_autoload_register([$this, 'load']);
     }
 
-    /**
+     /**
      * Load Class through autoloading
      *
      * @param string $class
@@ -102,10 +102,10 @@ class Application
 
         if ($this->file->exists($file)) {
             $this->file->call($file);
-        }
+        }                     
     }
 
-    /**
+     /**
      * Load Helpers File
      *
      * @return void
@@ -115,7 +115,7 @@ class Application
         $this->file->call('vendor/helpers.php');
     }
 
-    /**
+     /**
      * Get Shared Value
      *
      * @param string $key
@@ -134,7 +134,7 @@ class Application
         return $this->container[$key];
     }
 
-    /**
+     /**
      * Determine if the given key is shared through Application
      *
      * @param string $key
@@ -146,22 +146,22 @@ class Application
     }
 
     /**
-     * Share the given key|value Through Application
-     *
-     * @param string $key
-     * @param mixed $value
-     * @return mixed
-     */
-    public function share($key, $value)
-    {
-        if ($value instanceof Closure) {
-            $value = call_user_func($value, $this);
-        }
+    * Share the given key|value Through Application
+    *
+    * @param string $key
+    * @param mixed $value
+    * @return mixed
+    */
+   public function share($key, $value)
+   {
+       if ($value instanceof Closure) {
+           $value = call_user_func($value, $this);
+       }
 
-        $this->container[$key] = $value;
-    }
+       $this->container[$key] = $value;
+   }
 
-    /**
+     /**
      * Determine if the given key is an alias to core class
      *
      * @param string $alias
@@ -174,7 +174,7 @@ class Application
         return isset($coreClasses[$alias]);
     }
 
-    /**
+     /**
      * Create new object for the core class based on the given alias
      *
      * @param string $alias
@@ -190,13 +190,13 @@ class Application
     }
 
     /**
-     * Get All Core Classes with its aliases
-     *
-     * @return array
-     */
-    private function coreClasses()
-    {
-        return [
+    * Get All Core Classes with its aliases
+    *
+    * @return array
+    */
+   private function coreClasses()
+   {
+       return [
             'request'       => 'System\\Http\\Request',
             'response'      => 'System\\Http\\Response',
             'session'       => 'System\\Session',
@@ -209,17 +209,17 @@ class Application
             'url'           => 'System\\Url',
             'validator'     => 'System\\Validation',
             'pagination'    => 'System\\Pagination',
-        ];
-    }
+       ];
+   }
 
     /**
-     * Get shared value dynamically
-     *
-     * @param string $key
-     * @return mixed
-     */
-    public function __get($key)
-    {
-        return $this->get($key);
-    }
+    * Get shared value dynamically
+    *
+    * @param string $key
+    * @return mixed
+    */
+   public function __get($key)
+   {
+       return $this->get($key);
+   }
 }

@@ -4,22 +4,21 @@ namespace System;
 
 class Validation
 {
-
-    /**
+     /**
      * Application Object
      *
      * @var \System\Application
      */
     private $app;
 
-    /**
+     /**
      * Errors container
      *
      * @var array
      */
     private $errors = [];
 
-    /**
+     /**
      * Constructor
      *
      * @param \System\Application $app
@@ -29,7 +28,7 @@ class Validation
         $this->app = $app;
     }
 
-    /**
+     /**
      * Determine if the given input is not empty
      *
      * @param string $inputName
@@ -52,7 +51,7 @@ class Validation
         return $this;
     }
 
-    /**
+     /**
      * Determine if the given input file exists
      *
      * @param string $inputName
@@ -75,7 +74,7 @@ class Validation
         return $this;
     }
 
-    /**
+     /**
      * Determine if the given input is an image
      *
      * @param string $inputName
@@ -102,7 +101,7 @@ class Validation
         return $this;
     }
 
-    /**
+     /**
      * Determine if the given input is valid email
      *
      * @param string $inputName
@@ -125,7 +124,7 @@ class Validation
         return $this;
     }
 
-    /**
+     /**
      * Determine if the given input has float value
      *
      * @param string $inputName
@@ -148,7 +147,7 @@ class Validation
         return $this;
     }
 
-    /**
+     /**
      * Determine if the given input value should be at least the given length
      *
      * @param string $inputName
@@ -172,7 +171,7 @@ class Validation
         return $this;
     }
 
-    /**
+     /**
      * Determine if the given input value should be at most the given length
      *
      * @param string $inputName
@@ -197,7 +196,7 @@ class Validation
 
     }
 
-    /**
+     /**
      * Determine if the first input matches the second input
      *
      * @param string $fistInput
@@ -218,7 +217,7 @@ class Validation
         return $this;
     }
 
-    /**
+     /**
      * Determine if the given input is unique in database
      *
      * @param string $inputName
@@ -247,14 +246,14 @@ class Validation
 
         if ($exceptionColumn AND $exceptionColumnValue) {
             $result = $this->app->db->select($column)
-                ->from($table)
-                ->where($column . ' = ? AND ' . $exceptionColumn . ' != ?' , $inputValue, $exceptionColumnValue)
-                ->fetch();
+                                    ->from($table)
+                                    ->where($column . ' = ? AND ' . $exceptionColumn . ' != ?' , $inputValue, $exceptionColumnValue)
+                                    ->fetch();
         } else {
             $result = $this->app->db->select($column)
-                ->from($table)
-                ->where($column . ' = ?' , $inputValue)
-                ->fetch();
+                                    ->from($table)
+                                    ->where($column . ' = ?' , $inputValue)
+                                    ->fetch();
         }
 
         if ($result) {
@@ -263,7 +262,7 @@ class Validation
         }
     }
 
-    /**
+     /**
      * Add Custom Message
      *
      * @param string $message
@@ -276,7 +275,7 @@ class Validation
         return $this;
     }
 
-    /**
+     /**
      * Determine if there are any invalid inputs
      *
      * @return bool
@@ -286,7 +285,7 @@ class Validation
         return ! empty($this->errors);
     }
 
-    /**
+     /**
      * Determine if all inputs are valid
      *
      * @return bool
@@ -296,7 +295,7 @@ class Validation
         return empty($this->errors);
     }
 
-    /**
+     /**
      * Get All errors
      *
      * @return array
@@ -306,7 +305,7 @@ class Validation
         return $this->errors;
     }
 
-    /**
+     /**
      * Flatten errors and make it as a string imploded with break
      *
      * @return string
@@ -316,7 +315,7 @@ class Validation
         return implode('<br>', $this->errors);
     }
 
-    /**
+     /**
      * Get the value for the given input name
      *
      * @param string $input
@@ -327,7 +326,7 @@ class Validation
         return $this->app->request->post($input);
     }
 
-    /**
+     /**
      * Add input error
      *
      * @param string $inputName
@@ -339,7 +338,7 @@ class Validation
         $this->errors[$inputName] = $errorMessage;
     }
 
-    /**
+     /**
      * Determine if the given input has previous errors
      *
      * @param string $inputName
@@ -348,5 +347,4 @@ class Validation
     {
         return array_key_exists($inputName, $this->errors);
     }
-
 }
